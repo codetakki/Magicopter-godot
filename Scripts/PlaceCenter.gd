@@ -4,7 +4,3 @@ extends Node2D
 
 func _ready():
 	position.x = screensize.x/2
-
-func _process(_delta):
-	if mainGame.isMainMenu() :
-		position.y += -200 * _delta

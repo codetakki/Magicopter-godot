@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds4t8keey8xnl"]
+[gd_scene load_steps=13 format=3 uid="uid://ds4t8keey8xnl"]
 
 [ext_resource type="Script" path="res://Builds/MainGame.gd" id="1_aewna"]
 [ext_resource type="PackedScene" uid="uid://dv8p6akgiqidm" path="res://Scenes/player.tscn" id="1_vomax"]
@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://ijd0wt0h2pl6" path="res://Assets/Background.png" id="2_tkiob"]
 [ext_resource type="PackedScene" uid="uid://cdgaj7fkj56go" path="res://Scenes/Fire.tscn" id="4_28vms"]
 [ext_resource type="Script" path="res://Scripts/Path2D.gd" id="4_wkhi3"]
+[ext_resource type="PackedScene" uid="uid://1660rpwhdx8i" path="res://Scenes/GameOverScreen.tscn" id="5_pnf8w"]
+[ext_resource type="Script" path="res://Scripts/GameOverScreen.gd" id="6_5mn5d"]
+[ext_resource type="Script" path="res://Scenes/TitleCard.gd" id="7_3ia6r"]
 [ext_resource type="PackedScene" uid="uid://vf52ikmpvdfs" path="res://Scenes/TitleCard.tscn" id="8_m6vnb"]
-[ext_resource type="Script" path="res://Scripts/PlaceCenter.gd" id="9_d0jrl"]
 
 [sub_resource type="Curve2D" id="Curve2D_7ijdv"]
 _data = {
@@ -32,9 +34,9 @@ color = Color(1, 1, 1, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ReferenceRect"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 73
+offset_right = 503.0
+offset_bottom = 86.0
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 
 [node name="ScoreText" type="Label" parent="CanvasLayer/ReferenceRect/MarginContainer"]
@@ -43,7 +45,8 @@ texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0.611765, 1)
 theme_override_fonts/font = ExtResource("2_n7deq")
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
 
 [node name="Control" type="Control" parent="CanvasLayer/ReferenceRect"]
 layout_mode = 1
@@ -61,10 +64,17 @@ position = Vector2(0, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-offset = Vector2(0, -250)
 limit_left = 0
 position_smoothing_enabled = true
 script = ExtResource("2_5bbqs")
+
+[node name="GameOver" parent="Camera2D" instance=ExtResource("5_pnf8w")]
+position = Vector2(204, -750)
+script = ExtResource("6_5mn5d")
+
+[node name="TitleCard" parent="Camera2D" instance=ExtResource("8_m6vnb")]
+position = Vector2(0, -38)
+script = ExtResource("7_3ia6r")
 
 [node name="Player" parent="." instance=ExtResource("1_vomax")]
 unique_name_in_owner = true
@@ -72,9 +82,6 @@ unique_name_in_owner = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
-
-[node name="TitleCard" parent="." instance=ExtResource("8_m6vnb")]
-script = ExtResource("9_d0jrl")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(46.35, -40.365)

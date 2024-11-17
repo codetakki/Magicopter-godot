@@ -9,9 +9,11 @@ func _process(_delta):
 	time += _delta
 	if mainGame.isMainMenu():
 		position.y += -200 * _delta
+		offset.y = -80
 		return
 	if !playerDead:
-		position.y = %Player.position.y
+		position.y = lerp(position.y, %Player.position.y, 0.3)
+		offset.y = lerp(offset.y, -250.0, 0.01)
 
 
 func _on_player_died():

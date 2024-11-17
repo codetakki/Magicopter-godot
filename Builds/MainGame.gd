@@ -19,7 +19,18 @@ func dead():
 	return currentState == gameState.Dead
 
 func _setState(newState):
+	if currentState == newState:
+		return
 	var oldState = currentState
+	match newState:
+		gameState.Playing:
+			%ScoreText.text = "Score: 0"
+			
+			pass
+		gameState.Mainmenu:
+			pass
+		gameState.Dead:
+			pass
 	currentState = newState
 	stateChanged.emit(gameState.keys()[newState], oldState)
 	
@@ -41,12 +52,14 @@ func spawn_obsticle():
 	var new_obsticle = preload("res://Scenes/obsticle.tscn").instantiate()
 	self.add_child(new_obsticle)
 
+func _ready():
+	%ScoreText.text = ""
 func add_score():
 	print("score")
 	if playerDead:
 		return false
 	score+=1
-	%ScoreText.text = str(score)
+	%ScoreText.text = "Score: " + str(score)
 	return true
 
 func _on_timer_timeout():

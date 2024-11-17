@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vf52ikmpvdfs"]
 
-[ext_resource type="Texture2D" uid="uid://xk6hy2g5v02a" path="res://Assets/Menus/TitleScreenMagicopter.png" id="1_irgbf"]
+[ext_resource type="Texture2D" uid="uid://dss8ncphmp7j4" path="res://Assets/Menus/TitleScreenMagicopter.png" id="1_irgbf"]
 [ext_resource type="PackedScene" uid="uid://spcb57n1jbnw" path="res://Scenes/propeller.tscn" id="2_p2u8q"]
 
 [node name="TitleCard" type="Node2D"]

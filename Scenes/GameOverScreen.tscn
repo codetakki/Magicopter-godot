@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://1660rpwhdx8i"]
+
+[ext_resource type="Texture2D" uid="uid://c5axypk44y8y4" path="res://Assets/Menus/GameOverScreen.png" id="1_7s1yw"]
+[ext_resource type="PackedScene" uid="uid://spcb57n1jbnw" path="res://Scenes/propeller.tscn" id="2_itq6f"]
+
+[node name="TitleCard" type="Node2D"]
+
+[node name="TitleScreenMagicopter" type="Sprite2D" parent="."]
+z_index = 100
+z_as_relative = false
+texture_filter = 1
+scale = Vector2(1.46, 1.46)
+texture = ExtResource("1_7s1yw")
+
+[node name="AnimatedSprite2D" parent="TitleScreenMagicopter" instance=ExtResource("2_itq6f")]
+position = Vector2(-58.9041, -112.329)
+
+[node name="AnimatedSprite2D2" parent="TitleScreenMagicopter" instance=ExtResource("2_itq6f")]
+position = Vector2(62.3288, -112.329)
