@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://vf52ikmpvdfs"]
+
+[ext_resource type="Texture2D" uid="uid://xk6hy2g5v02a" path="res://Assets/Menus/TitleScreenMagicopter.png" id="1_irgbf"]
+[ext_resource type="PackedScene" uid="uid://be58d3f1lnosl" path="res://Scenes/Propeller.tscn" id="2_sjb4y"]
+
+[node name="TitleCard" type="Node"]
+
+[node name="TitleScreenMagicopter" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+texture = ExtResource("1_irgbf")
+
+[node name="Node2D" parent="TitleScreenMagicopter" instance=ExtResource("2_sjb4y")]
+texture_filter = 1
+position = Vector2(-107, -162)
+
+[node name="Node2D2" parent="TitleScreenMagicopter" instance=ExtResource("2_sjb4y")]
+texture_filter = 1
+position = Vector2(120, -163)
+
+[node name="Node2D3" parent="TitleScreenMagicopter" instance=ExtResource("2_sjb4y")]
+texture_filter = 1
+position = Vector2(0, -162)

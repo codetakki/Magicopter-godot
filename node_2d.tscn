@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds4t8keey8xnl"]
+
+[ext_resource type="Script" path="res://Builds/MainGame.gd" id="1_aewna"]
+[ext_resource type="PackedScene" uid="uid://dv8p6akgiqidm" path="res://Scenes/player.tscn" id="1_vomax"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="2_5bbqs"]
+[ext_resource type="FontFile" uid="uid://bk5il2k6m8l85" path="res://Assets/public-pixel-font/PublicPixel-z84yD.ttf" id="2_n7deq"]
+[ext_resource type="Texture2D" uid="uid://ijd0wt0h2pl6" path="res://Assets/Background.png" id="2_tkiob"]
+[ext_resource type="PackedScene" uid="uid://cdgaj7fkj56go" path="res://Scenes/Fire.tscn" id="4_28vms"]
+[ext_resource type="Script" path="res://Scripts/Path2D.gd" id="4_wkhi3"]
+[ext_resource type="PackedScene" uid="uid://vf52ikmpvdfs" path="res://Scenes/TitleCard.tscn" id="8_m6vnb"]
+
+[sub_resource type="Curve2D" id="Curve2D_7ijdv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 56.65, -610.635, 0, 0, 0, 0, 519.65, -610.635)
+}
+point_count = 2
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_aewna")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ReferenceRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ReferenceRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 73
+theme_override_constants/margin_top = 30
+
+[node name="ScoreText" type="Label" parent="CanvasLayer/ReferenceRect/MarginContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0.611765, 1)
+theme_override_fonts/font = ExtResource("2_n7deq")
+theme_override_font_sizes/font_size = 56
+
+[node name="Control" type="Control" parent="CanvasLayer/ReferenceRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Fire" parent="CanvasLayer/ReferenceRect/Control" instance=ExtResource("4_28vms")]
+position = Vector2(0, 2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(5, 9)
+offset = Vector2(0, -200)
+limit_left = 0
+position_smoothing_enabled = true
+script = ExtResource("2_5bbqs")
+
+[node name="Path2D" type="Path2D" parent="Camera2D"]
+position = Vector2(41.35, -49.365)
+curve = SubResource("Curve2D_7ijdv")
+script = ExtResource("4_wkhi3")
+
+[node name="SpawnerPath" type="PathFollow2D" parent="Camera2D/Path2D"]
+unique_name_in_owner = true
+position = Vector2(186.629, -610.635)
+rotation = -0.00325732
+progress = 129.984
+rotates = false
+
+[node name="Player" parent="." instance=ExtResource("1_vomax")]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1275.02, 1536)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_tkiob")
+centered = false
+
+[node name="TitleCard" parent="." instance=ExtResource("8_m6vnb")]
+
+[connection signal="stateChanged" from="." to="CanvasLayer/ReferenceRect/Control/Fire" method="_on_main_game_state_changed"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="died" from="Player" to="Camera2D" method="_on_player_died"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

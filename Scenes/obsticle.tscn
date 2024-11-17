@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://ubrqnkfp0yww"]
+
+[ext_resource type="Script" path="res://Scripts/obsticle.gd" id="1_xl5qy"]
+[ext_resource type="Texture2D" uid="uid://crjxcnlkah4dy" path="res://Assets/FloorImageSeparated.png" id="2_abge3"]
+[ext_resource type="PackedScene" uid="uid://bvv8gwf6rxsps" path="res://Scenes/explosion.tscn" id="3_8d1ny"]
+[ext_resource type="AudioStream" uid="uid://b1xbd74sfh8d0" path="res://Sounds/PlingScoreSound.wav" id="4_t5nqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqyfi"]
+size = Vector2(590.875, 31.35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5kxk"]
+size = Vector2(145.2, 11.6)
+
+[node name="Obsticle" type="Node2D"]
+position = Vector2(556, 287)
+scale = Vector2(1.805, 1.805)
+script = ExtResource("1_xl5qy")
+
+[node name="Left block" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left block"]
+position = Vector2(-295.91, 1)
+shape = SubResource("RectangleShape2D_iqyfi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Left block/CollisionShape2D"]
+texture_filter = 1
+position = Vector2(140, 0.6)
+texture = ExtResource("2_abge3")
+vframes = 2
+
+[node name="MiddleBlock" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleBlock"]
+modulate = Color(0.027451, 0.00784314, 0.0627451, 1)
+position = Vector2(-0.800003, 1.80002)
+shape = SubResource("RectangleShape2D_y5kxk")
+
+[node name="Right block" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right block"]
+z_index = 2
+position = Vector2(295.862, 1.125)
+shape = SubResource("RectangleShape2D_iqyfi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Right block/CollisionShape2D"]
+texture_filter = 1
+position = Vector2(-137.437, 0.475)
+texture = ExtResource("2_abge3")
+vframes = 2
+frame = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0.400008, 0.400008)
+scale = Vector2(0.0176738, 1.23242)
+texture = ExtResource("2_abge3")
+vframes = 2
+frame = 1
+
+[node name="Explosion" parent="." instance=ExtResource("3_8d1ny")]
+position = Vector2(1.10803, 11.0803)
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -14.0
+offset_top = -9.2
+offset_right = 26.0
+offset_bottom = 13.8
+
+[node name="ScoreSfx" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_t5nqi")
+
+[connection signal="area_entered" from="MiddleBlock" to="." method="_on_middle_block_area_entered"]
