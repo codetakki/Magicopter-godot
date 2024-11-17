@@ -22,7 +22,6 @@ window/size/viewport_height=1280
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
-window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 
 [editor]
