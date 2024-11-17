@@ -75,4 +75,4 @@ offset_bottom = 13.8
 unique_name_in_owner = true
 stream = ExtResource("4_t5nqi")
 
-[connection signal="area_entered" from="MiddleBlock" to="." method="_on_middle_block_area_entered"]
+[connection signal="area_exited" from="MiddleBlock" to="." method="_on_middle_block_area_exited"]

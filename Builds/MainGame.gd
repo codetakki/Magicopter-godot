@@ -33,6 +33,7 @@ func _input(event):
 			_setState(gameState.Playing)
 			pass
 		gameState.Dead:
+			get_tree().reload_current_scene()
 			_setState(gameState.Mainmenu)
 			pass
 	
@@ -41,6 +42,7 @@ func spawn_obsticle():
 	self.add_child(new_obsticle)
 
 func add_score():
+	print("score")
 	if playerDead:
 		return false
 	score+=1

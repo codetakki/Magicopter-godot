@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds4t8keey8xnl"]
+[gd_scene load_steps=11 format=3 uid="uid://ds4t8keey8xnl"]
 
 [ext_resource type="Script" path="res://Builds/MainGame.gd" id="1_aewna"]
 [ext_resource type="PackedScene" uid="uid://dv8p6akgiqidm" path="res://Scenes/player.tscn" id="1_vomax"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdgaj7fkj56go" path="res://Scenes/Fire.tscn" id="4_28vms"]
 [ext_resource type="Script" path="res://Scripts/Path2D.gd" id="4_wkhi3"]
 [ext_resource type="PackedScene" uid="uid://vf52ikmpvdfs" path="res://Scenes/TitleCard.tscn" id="8_m6vnb"]
+[ext_resource type="Script" path="res://Scripts/PlaceCenter.gd" id="9_d0jrl"]
 
 [sub_resource type="Curve2D" id="Curve2D_7ijdv"]
 _data = {
@@ -60,23 +61,10 @@ position = Vector2(0, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(5, 9)
-offset = Vector2(0, -200)
+offset = Vector2(0, -250)
 limit_left = 0
 position_smoothing_enabled = true
 script = ExtResource("2_5bbqs")
-
-[node name="Path2D" type="Path2D" parent="Camera2D"]
-position = Vector2(41.35, -49.365)
-curve = SubResource("Curve2D_7ijdv")
-script = ExtResource("4_wkhi3")
-
-[node name="SpawnerPath" type="PathFollow2D" parent="Camera2D/Path2D"]
-unique_name_in_owner = true
-position = Vector2(186.629, -610.635)
-rotation = -0.00325732
-progress = 129.984
-rotates = false
 
 [node name="Player" parent="." instance=ExtResource("1_vomax")]
 unique_name_in_owner = true
@@ -84,6 +72,21 @@ unique_name_in_owner = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
+
+[node name="TitleCard" parent="." instance=ExtResource("8_m6vnb")]
+script = ExtResource("9_d0jrl")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(46.35, -40.365)
+curve = SubResource("Curve2D_7ijdv")
+script = ExtResource("4_wkhi3")
+
+[node name="SpawnerPath" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(186.629, -610.635)
+rotation = -0.00325732
+progress = 129.984
+rotates = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -96,8 +99,6 @@ texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_tkiob")
 centered = false
-
-[node name="TitleCard" parent="." instance=ExtResource("8_m6vnb")]
 
 [connection signal="stateChanged" from="." to="CanvasLayer/ReferenceRect/Control/Fire" method="_on_main_game_state_changed"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]

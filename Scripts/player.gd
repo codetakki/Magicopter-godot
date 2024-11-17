@@ -24,7 +24,8 @@ func _physics_process(delta, ):
 	if overlapping_objects.size() > 0:
 		damage()
 	if mainGame.isMainMenu():
-		velocity = Vector2(0, 200 * sin(1 * time))
+		velocity = Vector2(0, 90 * sin(1 * time))
+		velocity.y += -200
 	elif dead:
 		velocity = Vector2(lerp(velocity.x, 0.0, 0.03), lerp(velocity.y, 700.0, .06))
 	else:

@@ -4,8 +4,11 @@ var playerDead = false
 func _ready():
 	position.y = %Player.position.y + 100
 
+var time = 0.0
 func _process(_delta):
+	time += _delta
 	if mainGame.isMainMenu():
+		position.y += -200 * _delta
 		return
 	if !playerDead:
 		position.y = %Player.position.y
