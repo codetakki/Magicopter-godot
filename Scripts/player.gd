@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 @onready var screensize = get_viewport_rect().size
 @onready var mainGame = get_node("/root/MainGame")
-
-var speed = 700.0
 var initSpeed = 700.0
 var direction = 1.0
 
@@ -18,9 +16,14 @@ func _input(event):
 		direction = direction *-1
 	
 var time = 0.0
+var speed = -200.0
+
 func _physics_process(delta, ):
 	time += delta
+	#Adjust speed based on difficulty
+	speed = lerp(-200, -470, mainGame.difficulty)
 	var overlapping_objects = %HitBox.get_overlapping_bodies()
+	
 	if overlapping_objects.size() > 0:
 		damage()
 	if mainGame.isMainMenu():
@@ -29,14 +32,11 @@ func _physics_process(delta, ):
 	elif dead:
 		velocity = Vector2(lerp(velocity.x, 0.0, 0.03), lerp(velocity.y, 700.0, .06))
 	else:
-		velocity = Vector2(lerp(velocity.x, direction * speed, .05), -200)
+		velocity = Vector2(lerp(velocity.x, direction * (speed * 3.5), .05), speed)
 	
-	if mainGame.playing():
-		rotation = atan2(velocity.normalized().y, velocity.normalized().x) + 1.570796  	
+	rotation = atan2(velocity.normalized().y, velocity.normalized().x) + 1.570796  	
 	move_and_slide()
 	position.x = wrapf(position.x, 0, screensize.x)
-
-	
 
 func damage():
 	if dead:

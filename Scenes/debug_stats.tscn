@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://gt6umk1uqpia"]
+
+[ext_resource type="Script" path="res://Scripts/DebugStats.gd" id="1_tuog5"]
+
+[node name="DebugStats" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tuog5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2

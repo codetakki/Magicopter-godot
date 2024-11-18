@@ -1,7 +1,7 @@
 extends Node2D
 
-var spaceMax = 100
-var spaceMin = 150
+var spaceMax = 140
+var spaceMin = 100
 @onready var screen = get_viewport_rect()
 @onready var screensize = screen.size
 @onready var player = get_node("../Player")

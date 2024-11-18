@@ -54,12 +54,25 @@ func spawn_obsticle():
 
 func _ready():
 	%ScoreText.text = ""
+	
+var difficulty = 0
+func get_difficulty():
+	var t = clamp(float(score) / 100.0, 0, 1)
+	t = ease(t, -2)
+	return t
+	
+func _physics_process(_delta):
+	difficulty = get_difficulty()
+
+	pass
+	
 func add_score():
 	print("score")
 	if playerDead:
 		return false
 	score+=1
 	%ScoreText.text = "Score: " + str(score)
+	print("diff"+ str(difficulty) +" score: "+str(score))
 	return true
 
 func _on_timer_timeout():
