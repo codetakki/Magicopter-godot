@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dv8p6akgiqidm"]
+[gd_scene load_steps=32 format=3 uid="uid://dv8p6akgiqidm"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_fi33v"]
 [ext_resource type="Texture2D" uid="uid://lg2mvetlab6o" path="res://Assets/PlayerSprite.png" id="2_6orlm"]
 [ext_resource type="AudioStream" uid="uid://b2i0bfycgcva4" path="res://Sounds/DeathSound.wav" id="3_b4kl0"]
 [ext_resource type="Script" path="res://Scenes/Clone.gd" id="4_lwbcm"]
+[ext_resource type="Texture2D" uid="uid://brrufw2nkkxk4" path="res://Assets/ExplosionSprite.png" id="5_a12i1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hvlgo"]
 atlas = ExtResource("2_6orlm")
@@ -156,6 +157,58 @@ _data = {
 "idle": SubResource("Animation_ta7gn")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rdvlr"]
+blend_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo6px"]
+atlas = ExtResource("5_a12i1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvcg5"]
+atlas = ExtResource("5_a12i1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1u3g"]
+atlas = ExtResource("5_a12i1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4x2l"]
+atlas = ExtResource("5_a12i1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7glbx"]
+atlas = ExtResource("5_a12i1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yka7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo6px")
+}, {
+"duration": 1.1,
+"texture": SubResource("AtlasTexture_cvcg5")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_j1u3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4x2l")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_7glbx")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.6
+}]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, 33)
 scale = Vector2(1.31, 1.31)
@@ -172,6 +225,8 @@ frame_progress = 0.415189
 script = ExtResource("4_lwbcm")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 3
+z_as_relative = false
 texture_filter = 3
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_o4jtu")
@@ -198,5 +253,17 @@ root_node = NodePath("../Clone")
 libraries = {
 "": SubResource("AnimationLibrary_7k2eg")
 }
+
+[node name="AbilityExplosion" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_rdvlr")
+position = Vector2(8, 0)
+scale = Vector2(4.885, 4.885)
+sprite_frames = SubResource("SpriteFrames_yka7s")
+frame = 6
+frame_progress = 1.0
 
 [connection signal="draw" from="." to="." method="_on_draw"]

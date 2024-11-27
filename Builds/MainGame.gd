@@ -3,7 +3,7 @@ extends Node2D
 var score = 0
 var playerDead = false 
 @onready var screenSize = get_viewport_rect().size 
-
+@onready var abilityToken = %AbilityToken
 enum gameState  {
 	Playing,
 	Mainmenu,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ds4t8keey8xnl"]
+[gd_scene load_steps=15 format=3 uid="uid://ds4t8keey8xnl"]
 
 [ext_resource type="Script" path="res://Builds/MainGame.gd" id="1_aewna"]
 [ext_resource type="PackedScene" uid="uid://dv8p6akgiqidm" path="res://Scenes/player.tscn" id="1_vomax"]
@@ -6,7 +6,9 @@
 [ext_resource type="FontFile" uid="uid://bk5il2k6m8l85" path="res://Assets/public-pixel-font/PublicPixel-z84yD.ttf" id="2_n7deq"]
 [ext_resource type="Texture2D" uid="uid://ijd0wt0h2pl6" path="res://Assets/Background.png" id="2_tkiob"]
 [ext_resource type="PackedScene" uid="uid://cdgaj7fkj56go" path="res://Scenes/Fire.tscn" id="4_28vms"]
+[ext_resource type="Texture2D" uid="uid://ca3qtiv40cj1y" path="res://Assets/AbilityIndicator.png" id="4_dvmsw"]
 [ext_resource type="PackedScene" uid="uid://1660rpwhdx8i" path="res://Scenes/GameOverScreen.tscn" id="5_pnf8w"]
+[ext_resource type="Script" path="res://Scripts/AbilityIndicator.gd" id="5_q5ry2"]
 [ext_resource type="Script" path="res://Scripts/GameOverScreen.gd" id="6_5mn5d"]
 [ext_resource type="Script" path="res://Scenes/TitleCard.gd" id="7_3ia6r"]
 [ext_resource type="PackedScene" uid="uid://vf52ikmpvdfs" path="res://Scenes/TitleCard.tscn" id="8_m6vnb"]
@@ -57,6 +59,29 @@ size_flags_vertical = 8
 [node name="Fire" parent="CanvasLayer/ReferenceRect/Control" instance=ExtResource("4_28vms")]
 position = Vector2(0, 2)
 
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/ReferenceRect"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ReferenceRect/MarginContainer2"]
+texture_filter = 1
+position = Vector2(-5.99999, 65)
+scale = Vector2(1.845, 1.845)
+texture = ExtResource("4_dvmsw")
+hframes = 2
+
+[node name="AbilityToken" type="Sprite2D" parent="CanvasLayer/ReferenceRect/MarginContainer2/Sprite2D"]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("4_dvmsw")
+region_enabled = true
+region_rect = Rect2(76, 12, 40, 40)
+script = ExtResource("5_q5ry2")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 limit_left = 0
@@ -93,7 +118,7 @@ centered = false
 
 [node name="WindowSprite2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
-position = Vector2(450, 465)
+position = Vector2(1265, 423)
 scale = Vector2(2.38281, 2.47656)
 texture = ExtResource("12_y6qux")
 hframes = 3
@@ -115,6 +140,7 @@ hframes = 3
 frame = 2
 
 [connection signal="stateChanged" from="." to="CanvasLayer/ReferenceRect/Control/Fire" method="_on_main_game_state_changed"]
+[connection signal="property_list_changed" from="CanvasLayer/ReferenceRect/MarginContainer2/Sprite2D/AbilityToken" to="CanvasLayer/ReferenceRect/MarginContainer2/Sprite2D/AbilityToken" method="_on_property_list_changed"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="Camera2D" method="_on_player_died"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

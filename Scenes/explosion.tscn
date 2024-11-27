@@ -44,20 +44,27 @@ animations = [{
 }, {
 "duration": 0.7,
 "texture": SubResource("AtlasTexture_7glbx")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"default",
-"speed": 6.6
+"speed": 8.0
 }]
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_rns8i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+z_as_relative = false
 texture_filter = 1
 position = Vector2(8, 0)
 scale = Vector2(4.885, 4.885)
 sprite_frames = SubResource("SpriteFrames_q16k0")
+frame = 6
+frame_progress = 1.0
 
 [node name="ExplosionSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rvrur")

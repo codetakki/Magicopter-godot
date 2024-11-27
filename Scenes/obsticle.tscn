@@ -12,12 +12,16 @@ size = Vector2(590.875, 31.35)
 size = Vector2(145.2, 11.6)
 
 [node name="Obsticle" type="Node2D"]
-position = Vector2(556, 287)
 scale = Vector2(1.805, 1.805)
 script = ExtResource("1_xl5qy")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-39.0581, -11.3435)
+scale = Vector2(36.2604, 2.13435)
+
 [node name="Left block" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left block"]
 position = Vector2(-295.91, 1)
@@ -39,6 +43,7 @@ shape = SubResource("RectangleShape2D_y5kxk")
 
 [node name="Right block" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right block"]
 z_index = 2
@@ -76,4 +81,33 @@ offset_bottom = 13.8
 unique_name_in_owner = true
 stream = ExtResource("4_t5nqi")
 
+[node name="DestroyEffect" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="Explosion" parent="DestroyEffect" instance=ExtResource("3_8d1ny")]
+position = Vector2(-128.532, 6.6482)
+scale = Vector2(0.665, 0.665)
+
+[node name="Explosion2" parent="DestroyEffect" instance=ExtResource("3_8d1ny")]
+position = Vector2(-201.662, 13.2964)
+scale = Vector2(0.665, 0.665)
+
+[node name="Explosion3" parent="DestroyEffect" instance=ExtResource("3_8d1ny")]
+position = Vector2(-67.59, 8.31025)
+scale = Vector2(0.665, 0.665)
+
+[node name="Explosion4" parent="DestroyEffect" instance=ExtResource("3_8d1ny")]
+position = Vector2(61.4958, 8.31025)
+scale = Vector2(0.665, 0.665)
+
+[node name="Explosion5" parent="DestroyEffect" instance=ExtResource("3_8d1ny")]
+position = Vector2(116.898, 8.86427)
+scale = Vector2(0.665, 0.665)
+
+[node name="Explosion6" parent="DestroyEffect" instance=ExtResource("3_8d1ny")]
+position = Vector2(173.407, 1.66205)
+scale = Vector2(0.665, 0.665)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_exited" from="MiddleBlock" to="." method="_on_middle_block_area_exited"]
