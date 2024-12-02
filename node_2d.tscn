@@ -117,24 +117,32 @@ texture = ExtResource("2_tkiob")
 centered = false
 
 [node name="WindowSprite2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_filter = 1
+texture_filter = 3
 position = Vector2(1265, 423)
-scale = Vector2(2.38281, 2.47656)
+scale = Vector2(2, 2)
 texture = ExtResource("12_y6qux")
 hframes = 3
 frame = 2
 
 [node name="WindowSprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_filter = 1
+texture_filter = 3
 position = Vector2(33, 127)
-scale = Vector2(3.875, 3.875)
+scale = Vector2(3, 3)
 texture = ExtResource("12_y6qux")
 hframes = 3
 
 [node name="WindowSprite3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_filter = 1
+texture_filter = 3
 position = Vector2(148, 958)
-scale = Vector2(3.50195, 3.64176)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("12_y6qux")
+hframes = 3
+frame = 2
+
+[node name="WindowSprite4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 3
+position = Vector2(423.938, 510.958)
+scale = Vector2(4, 4)
 texture = ExtResource("12_y6qux")
 hframes = 3
 frame = 2

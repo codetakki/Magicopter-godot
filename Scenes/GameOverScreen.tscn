@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://1660rpwhdx8i"]
+[gd_scene load_steps=5 format=3 uid="uid://1660rpwhdx8i"]
 
 [ext_resource type="Texture2D" uid="uid://c5axypk44y8y4" path="res://Assets/Menus/GameOverScreen.png" id="1_7s1yw"]
 [ext_resource type="PackedScene" uid="uid://spcb57n1jbnw" path="res://Scenes/propeller.tscn" id="2_itq6f"]
+[ext_resource type="FontFile" uid="uid://bk5il2k6m8l85" path="res://Assets/public-pixel-font/PublicPixel-z84yD.ttf" id="3_3jjcb"]
+[ext_resource type="Script" path="res://Scripts/GOscore.gd" id="4_mffuq"]
 
 [node name="TitleCard" type="Node2D"]
 
@@ -17,3 +19,18 @@ position = Vector2(-58.9041, -112.329)
 
 [node name="AnimatedSprite2D2" parent="TitleScreenMagicopter" instance=ExtResource("2_itq6f")]
 position = Vector2(62.3288, -112.329)
+
+[node name="ScoreText" type="Label" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+offset_left = -93.0
+offset_top = -45.0
+offset_right = 99.0
+offset_bottom = -21.0
+theme_override_colors/font_color = Color(0, 0, 0.611765, 1)
+theme_override_fonts/font = ExtResource("3_3jjcb")
+theme_override_font_sizes/font_size = 24
+text = "Score:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_mffuq")

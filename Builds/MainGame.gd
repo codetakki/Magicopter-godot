@@ -24,7 +24,7 @@ func _setState(newState):
 	var oldState = currentState
 	match newState:
 		gameState.Playing:
-			%ScoreText.text = "Score: 0"
+			%ScoreText.text = "Score:0"
 			
 			pass
 		gameState.Mainmenu:
@@ -61,9 +61,9 @@ func get_difficulty():
 	t = ease(t, -2)
 	return t
 	
-func _physics_process(_delta):
+func _process(_delta):
 	difficulty = get_difficulty()
-
+	%ScoreText.visible = playing()
 	pass
 	
 func add_score():
@@ -71,8 +71,7 @@ func add_score():
 	if playerDead:
 		return false
 	score+=1
-	%ScoreText.text = "Score: " + str(score)
-	print("diff"+ str(difficulty) +" score: "+str(score))
+	%ScoreText.text = "Score:" + str(score)
 	return true
 
 func _on_timer_timeout():
