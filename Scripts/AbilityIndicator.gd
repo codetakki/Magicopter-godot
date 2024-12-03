@@ -17,4 +17,5 @@ func _on_property_list_changed():
 	pass # Replace with function body.
 	
 func _process(delta):
+	if not mainGame: return
 	get_parent().visible = mainGame.playing()
