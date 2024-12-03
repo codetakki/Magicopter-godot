@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1733232504|4871781172';
+const CACHE_VERSION = '1733234925|7292617920';
 /** @type {string} */
 const CACHE_PREFIX = 'MagiCopter-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
