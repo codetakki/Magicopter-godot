@@ -63,4 +63,3 @@ func useAbility(overlapping_objects):
 	print(overlapping_objects)
 	overlapping_objects[0].get_parent().destroy()
 	%AbilityExplosion.play("default")
-
